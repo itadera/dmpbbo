@@ -470,6 +470,27 @@ class Trajectory:
 
         return Trajectory(ts, ys, yds, ydds, misc)
 
+    @staticmethod
+    def loadcsv(filename, n_dims_misc=0):
+        """ Load a matrix representation of the trajectory from an ASCII file.
+
+        @param filename: The name of the file to load the matrix from.
+        @param n_dims_misc: The number of miscellaneous variables in the trajectory. This needs
+        to be specified, because it cannot be stored in the matrix.
+        """
+        data = np.loadtxt(filename, delimiter=',', skiprows=1)
+
+        (n_time_steps, n_cols) = data.shape
+        n_dims = (n_cols - 1 - n_dims_misc) // 3
+
+        ts = data[:, 0]
+        ys = data[:, 1 : 1 * n_dims + 1]
+        yds = data[:, 1 * n_dims + 1 : 2 * n_dims + 1]
+        ydds = data[:, 2 * n_dims + 1 : 3 * n_dims + 1]
+        misc = data[:, 3 * n_dims + 1 :]
+
+        return Trajectory(ts, ys, yds, ydds, misc)
+
     def recompute_derivatives(self):
         """ Recompute the velocities and accelerations from the positions.
 
