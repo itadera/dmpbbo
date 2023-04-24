@@ -10,6 +10,7 @@
 
 
   <build_depend>git</build_depend>
+  <depend>nlohmann-json-dev</depend>
   <exec_depend condition="$ROS_VERSION == 1">catkin</exec_depend>
 
   <buildtool_depend>cmake</buildtool_depend>
