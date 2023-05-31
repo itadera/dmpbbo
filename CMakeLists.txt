@@ -1,7 +1,7 @@
 # States that CMake required version must be greater than 2.6
 cmake_minimum_required(VERSION 2.6)
 # Project name is not mandatory, but you should use it
-project(DMP_BBO)
+project(dmpbbo)
 ###############################################################################
 # General settings
 
